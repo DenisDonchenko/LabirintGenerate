@@ -12,9 +12,17 @@ public class FileToArray {
     private int[][] arr;
     private String path;
 
-    public FileToArray(String path) throws IOException {
+    public int[][] getArr() {
+        return arr;
+    }
+
+    public FileToArray(String path){
         this.path = path;
-        fileToArr();
+        try {
+            fileToArr();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         arr[x][y] = 2;
     }
 
