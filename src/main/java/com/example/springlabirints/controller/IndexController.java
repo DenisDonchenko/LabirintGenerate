@@ -19,12 +19,11 @@ import java.nio.Buffer;
 @RequestMapping("/")
 public class IndexController {
 
-
-
-    @GetMapping
+    @GetMapping()
     public String index(){
         return "index";
     }
+
     @PostMapping("/uploadFile")
     public String uploudFile(@RequestParam("file") MultipartFile file, Model model) throws IOException {
         if (!file.isEmpty()) {
@@ -35,7 +34,7 @@ public class IndexController {
                 FileWriter fileWriter = new FileWriter(f);
 
                 byte[] bytes = file.getBytes();
-                BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(file.getName() + "-uploaded")));
+                BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(file.getOriginalFilename())));
                 stream.write(bytes);
 
                 for(byte b: bytes){
@@ -44,9 +43,10 @@ public class IndexController {
 
                 fileWriter.close();
                 stream.close();
-                 FileToArray fileToArray = new FileToArray(nameFile);
+                 FileToArray fileToArray = new FileToArray(file.getOriginalFilename());
                 fileToArray.printLabirint();
-                model.addAttribute("arr",fileToArray.getArr());
+                int[][] matrix =fileToArray.getArr();
+                model.addAttribute("matrix",matrix);
             } catch (Exception e) {
                 System.out.println("Bad" + e.getMessage());
             }
@@ -54,7 +54,7 @@ public class IndexController {
         else {
             System.out.println( "File is empty");
         }
-        return "redirect:/";
+        return "printArr";
     }
 
 }
