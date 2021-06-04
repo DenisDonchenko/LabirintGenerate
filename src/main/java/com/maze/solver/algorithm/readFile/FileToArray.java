@@ -1,4 +1,4 @@
-package com.example.springlabirints.labyrinthAlgoritm;
+package com.maze.solver.algorithm.readFile;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -16,6 +16,14 @@ public class FileToArray {
         return arr;
     }
 
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
     public FileToArray(String path){
         this.path = path;
         try {
@@ -23,7 +31,6 @@ public class FileToArray {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        arr[x][y] = 2;
     }
 
     public void printLabirint() {

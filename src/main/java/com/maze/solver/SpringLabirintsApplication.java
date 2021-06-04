@@ -1,4 +1,4 @@
-package com.example.springlabirints;
+package com.maze.solver;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

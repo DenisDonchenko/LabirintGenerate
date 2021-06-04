@@ -1,7 +1,8 @@
-package com.example.springlabirints.controller;
+package com.maze.solver.controller;
 
 
-import com.example.springlabirints.labyrinthAlgoritm.FileToArray;
+import com.maze.solver.algorithm.readFile.FileToArray;
+import com.maze.solver.algorithm.maze.MazeSolver;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,11 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.thymeleaf.util.StringUtils;
 
-import javax.swing.text.Document;
 import java.io.*;
-import java.nio.Buffer;
 
 @Controller
 @RequestMapping("/")
@@ -43,10 +41,10 @@ public class IndexController {
 
                 fileWriter.close();
                 stream.close();
-                 FileToArray fileToArray = new FileToArray(file.getOriginalFilename());
-                fileToArray.printLabirint();
-                int[][] matrix =fileToArray.getArr();
-                model.addAttribute("matrix",matrix);
+                FileToArray fileToArray = new FileToArray(file.getOriginalFilename());
+                int arr[][]= MazeSolver.maze_solve(fileToArray.getArr(),fileToArray.getX(),fileToArray.getY());
+
+                model.addAttribute("matrix",arr);
             } catch (Exception e) {
                 System.out.println("Bad" + e.getMessage());
             }
@@ -56,5 +54,6 @@ public class IndexController {
         }
         return "printArr";
     }
+
 
 }
