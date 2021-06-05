@@ -3,13 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+<style>
+    header{
+        margin-bottom: 15px;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        align-content: center;
+        align-items:center;
+    }
+    a{
+        text-decoration: none;
+        text-align: center;
+        margin: 10px;
+    }
+    .name{
+        width: 100%;
+        text-align: center;
+        font-size: 30px;
+    }
+    form > div{
+        font-size: 16px;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-content: center;
+        align-items:center;
+        text-align: center;
+    }
+    div > label{
+        margin: 10px;
+    }
+    form{
+        position: fixed; top: 50%; left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-content: center;
+        align-items:center;
+        text-align: center;
+        width: 100%;
+        font-size: 2.1vw;
+        margin: auto;
+    }
+</style>
 </head>
+
 <body>
+<header>
+        <a th:href="@{/allLabi}">My <br>Labyrinths</a>
+        <a th:href="@{/logout}">Logout</a>
+</header>
+<div class="name">Labyrinth</div>
+<!--
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Logout" />
+</form>
+</header>
+<h3 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]</h3>
+<h3 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]</h3>
+-->
+
 
 <div>
-<form enctype="multipart/form-data" method="post" action="/uploadFile">
-    <input type="file" onchange="this.form.submit()" name="file">
-</form>
+
+     <form enctype="multipart/form-data" method="post" action="/uploadFile">
+         <div >
+             <label>Please select plain file to upload</label>
+             <input type="file" onchange="this.form.submit()" name="file">
+         </div>
+
+      </form>
 </div>
 
 

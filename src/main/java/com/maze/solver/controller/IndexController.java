@@ -21,6 +21,11 @@ public class IndexController {
     public String index(){
         return "index";
     }
+    @GetMapping("/go")
+    public String indexGo(){
+        return "Hello";
+    }
+
 
     @PostMapping("/uploadFile")
     public String uploudFile(@RequestParam("file") MultipartFile file, Model model) throws IOException {
@@ -44,6 +49,7 @@ public class IndexController {
                 FileToArray fileToArray = new FileToArray(file.getOriginalFilename());
                 int arr[][]= MazeSolver.maze_solve(fileToArray.getArr(),fileToArray.getX(),fileToArray.getY());
 
+                model.addAttribute("sizeMaze","Matrix("+arr.length+", "+arr[0].length);
                 model.addAttribute("matrix",arr);
             } catch (Exception e) {
                 System.out.println("Bad" + e.getMessage());
