@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 public class MyUserDetails implements UserDetails {
 
     private User user;
+    private int id;
 
     public MyUserDetails(User user) {
         this.user = user;

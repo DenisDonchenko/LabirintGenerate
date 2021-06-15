@@ -1,6 +1,7 @@
 package com.maze.solver.entity;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -16,8 +17,19 @@ public class User {
     private String role;
     private boolean enabled;
 
+    @OneToMany(mappedBy="user")
+    private Set<Maze> items;
+
     public User() {
         }
+
+    public Set<Maze> getItems() {
+        return items;
+    }
+
+    public void setItems(Set<Maze> items) {
+        this.items = items;
+    }
 
     public Long getId() {
         return id;
@@ -56,14 +68,6 @@ public class User {
     }
 
     public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
-
-    public User( String username, String password, String role, boolean enabled) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.role = role;
         this.enabled = enabled;
     }
 

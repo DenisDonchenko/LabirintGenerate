@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -53,12 +53,16 @@
 <body>
 
 <header>
+
     <a th:href="@{/allLabi}">My <br>Labyrinths</a>
     <a th:href="@{/logout}">Logout</a>
 </header>
 
 <div class="maze">
-    <div style="font-size:20px;" th:text="${sizeMaze}"></div>
+    <div style="font-size:20px;" th:text="${sizeMaze}">
+
+    </div>
+    <div th:text="${inference}"></div>
 <table th:each="i :${matrix}">
     <td th:each="item: ${i}" th:switch="${item}">
         <div  th:case="'1'"  style="width: 50px;height: 50px;background: saddlebrown;border: 1px solid black;"></div>

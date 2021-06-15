@@ -3,7 +3,7 @@ package com.maze.solver.algorithm.maze;
 import java.util.Arrays;
 import java.util.LinkedList;
 
-public class Maze {
+public class Mazes {
     private int[][] maze;
     private LinkedList<Position> path = new LinkedList<Position>();
     private Position start;

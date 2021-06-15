@@ -4,9 +4,16 @@ public class MazeSolver {
     //0 = wall
     //1 = path
     //2 = destination
+    private String inference = null;
 
+    public String getInference() {
+        return inference;
+    }
 
-        private static int[][] copy_array(int[][] arr){
+    public MazeSolver() {
+    }
+
+    private static int[][] copy_array(int[][] arr){
             int[][]arrayOut=new int[arr.length][arr[0].length];
 
             for (int i=0;i<arr.length;i++){
@@ -18,25 +25,18 @@ public class MazeSolver {
             return arrayOut;
         }
 
-        public static int[][] maze_solve(int[][] arrMazeStart, int x,int y){
+        public  int[][] maze_solve(int[][] arrMazeStart, int x,int y){
 
-            Maze m = new Maze();
+            Mazes m = new Mazes();
 
             int[][] arrMazeFinish=copy_array(arrMazeStart);
-                    /*{
-                            {1, 1, 1, 1, 1, 1},
-                            {1, 0, 0, 0, 0, 1},
-                            {1, 0, 1, 0, 0, 1},
-                            {1, 0, 1, 0, 0, 2},
-                            {1, 1, 1, 1, 1, 1} };
-*/
             m.setMaze(arrMazeStart);
             m.setStart(new Position(y,x));
 
             if(solveMaze(m)) {
-                System.out.println("You won!");
+                inference = "You won!";
             } else {
-                System.out.println("No path");
+                inference = "No path";
             }
 
             for (Position position:m.getPath()){
@@ -47,7 +47,7 @@ public class MazeSolver {
         }
 
 
-    private static boolean solveMaze(Maze m) {
+    private static boolean solveMaze(Mazes m) {
         Position p = m.getStart();
         m.getPath().push(p);
 
@@ -109,7 +109,7 @@ public class MazeSolver {
         }
     }
 
-    private static boolean isValid(int y, int x, Maze m) {
+    private static boolean isValid(int y, int x, Mazes m) {
         if(y < 0 ||
                 y >= m.getMaze().length ||
                 x < 0 ||

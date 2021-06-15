@@ -12,7 +12,7 @@ public class FileToArray {
     private int[][] arr;
     private String path;
 
-    public int[][] getArr() {
+    public int[][]  getArr() {
         return arr;
     }
 
